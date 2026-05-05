@@ -1,0 +1,44 @@
+PART DATABASE
+
+											PARTSEG1-IO PARTNUM,PARTNAME,PART-ORDER-IND			
+											01===========	 5		10		1			=> 16		
+												|
+												|
+				=================================================================
+				|									|					|
+				|									|					|
+			05============						10============		15============
+			PRICESEG-IO							STOCKSEG-IO 		  	  ORDSEG15-IO 
+  				|(PRICECODE,UNITPRICE,DISCOUNTP) 	(LOCCODE,ONHAND,ORDQTY)  		   (ORDERNUM,ORDERDATE)	
+  				|	2		3,2		3,2 =12			2	3		3	8			 5		 8			13													
+  				|							
+  			07========								
+ 			ADDLCHRG (CHRGCODE,AMT)
+						2	 3,2	 =7
+
+
+RECORD LENGTH =24
+KEYLEN OF ALL = 16
+
+
+
+ORDER DATABASE:
+
+									ORDERSEG-IO (ORDERNUM,ORDDATE,TOTALAMT,INVNUM,ORDSTATUS)
+									===========
+										|
+										|
+							============================		
+							|						|
+							|						|
+						============				==========
+(SHIPID,SHIPDATE,STATUS)	ORDERSHP-IO. 				ORDERDET-IO (LINENUM,PARTNUM,QTYCODE,QTY,TOTPRICE)
+							|	
+							|		
+						===========
+						ORDERINV-IO. (INVNUM,AMTPAID,AMTDUE,STATUS)
+
+
+   
+
+01 
